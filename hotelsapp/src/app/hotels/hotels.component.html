@@ -1,0 +1,50 @@
+
+  
+  <div  [class.active]="order === 'hotel.price'"  (click)="setOrder('hotel.price')" id="price_div"> Sort by Price <span [hidden]="reverse">▼</span>
+   <span [hidden]="!reverse">▲</span>
+   </div>
+  
+  <div  [class.active]="order === 'hotel.stars'"  (click)="setOrder('hotel.stars')" id="stars_div"> Sort by Stars of Rating <span [hidden]="reverse">▼</span>
+    <span [hidden]="!reverse">▲</span>
+    </div>
+<input type="text" [(ngModel)]="hotelFilter.name" placeholder="Type to filter by name">
+<br clear="all"/>
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let row of collection  | filterBy: hotelFilter.name | orderBy: order:reverse:'case-insensitive'"   class="col-lg-4 col-sm-6" >
+      <i class="fa fa-picture-o" aria-hidden="true"></i> <br />
+      <span class="span_details">Hotel Name: {{row.hotel.name}}</span> <br />
+      <span class="span_details">Price: US ${{row.hotel.price}} </span> <br />
+      <span class="span_details">Average Star Rating: {{row.hotel.stars}} out of 5</span>
+    </div>
+
+    <div *ngIf="(collection | filterBy: hotelFilter).length === 0">
+        No matching elements
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--<h2>{{hotel_1.name}} Details</h2>
+<i class="fa fa-picture-o" aria-hidden="true"></i>
+<div><span>name: </span>{{hotel_1.name}}</div>
+<div><span>stars: </span>{{hotel_1.stars}}</div>
+<div><span>price: </span>{{hotel_1.price}}</div>
+
+<div>
+  <label>name:
+    <input [(ngModel)]="hotel_1.name" placeholder="name">
+  </label>
+</div>
+
+<div id="content" ng-controller="MainCtrl">
+
+  <input type='text' ng-model='searchText' placeholder="Search by name" />
+
+      <ul>
+          <li ng-repeat='hotel_1 in hotel_1 | filter:searchText'> {{hotel_1.name}} </li>
+      </ul>
+
+</div>-->
